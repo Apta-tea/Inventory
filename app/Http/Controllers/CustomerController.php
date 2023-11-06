@@ -3,15 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use App\Models\customers;
-use App\Models\suppliers;
-use App\Models\purchases;
-use App\Models\invoices;
-use App\Models\companys;
-use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,17 +14,6 @@ class AdminController extends Controller
     public function index()
     {
         //
-         // total customers
-         $data['total_customers'] = customers::all()->count();
-         // total suppliers
-         $data['total_supplier'] = suppliers::all()->count();
-         // sum purchase
-         $data['purchase_total_cost'] = purchases::sum('total_cost');
-         // sum invoice
-         $data['invoice_total_cost'] = invoices::sum('total_cost');
-         $data['company'] = companys::all();
-        $data['_view'] = 'admin_homepage';
-        Return view('Layout.body', $data);
     }
 
     /**

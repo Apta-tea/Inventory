@@ -27,6 +27,11 @@ Route::get('logout', [AuthController::class,'logout']);
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['check_login:super']], function () {
         Route::get('admin', [AdminController::class, 'index']);
+        Route::resource('customer', App\Http\Controllers\CustomerController::class);
+        Route::resource('supplier', App\Http\Controllers\SupplierController::class);
+        Route::resource('purchase', App\Http\Controllers\PurchaseController::class);
+        Route::resource('invoice', App\Http\Controllers\InvoiceController::class);
+
     });
     Route::group(['middleware' => ['check_login:staff']], function () {
         Route::get('staff', [StaffController::class, 'index']);

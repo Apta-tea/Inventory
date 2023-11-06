@@ -51,15 +51,25 @@
 									<div class="col-md-6">
 										<!-- Logo -->
 										<div class="card-body-login mb-30">
-                                            		<img src="{{ asset('/asset/uploads/logo.png') }}" alt="">
+                                            		<img src="{{ asset('/assets/uploads/logo.png') }}" alt="">
 										</div>
+										{{-- Error Alert --}}
+                                    @if(session('error'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{session('error')}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @endif
+
                                                 <h4 class="font-22 mb-30">Sign In</h4>
 
                                          
 										 <form method="POST" action="{{ route('login') }}">
                         @csrf
                                             <div class="form-group">
-											<label class="float-left" for="emailaddress">Email address (admin@pos.com)</label>
+											<label class="float-left" for="emailaddress"></label>
 											<input class="form-control" type="email" name="email"
 												id="email"
 												value=""
@@ -71,7 +81,7 @@
 												href="http://localhost/inventory/index.php/admin/login/forget_password"
 												class="text-dark float-right"><span
 												class="font-12 text-primary">Forgot your password?</span></a> -->
-											<label class="float-left" for="password">Password (123456)</label> <input
+											<label class="float-left" for="password"></label> <input
 												class="form-control" type="password" name="password"
 												id="password"
 												value=""

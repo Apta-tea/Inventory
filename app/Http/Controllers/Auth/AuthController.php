@@ -12,13 +12,13 @@ class AuthController extends Controller
     //
     public function index()
     {
-        /* if ($user = Auth::user()) {
+        if ($user = Auth::user()) {
             if ($user->user_type == 'super') {
                 return redirect()->intended('admin');
             } elseif ($user->user_type == 'staff') {
                 return redirect()->intended('staff');
             }
-        } */
+        } 
         return view('Auth.login');
     }
 
@@ -35,9 +35,9 @@ class AuthController extends Controller
             if (Auth::attempt($cred)) {
                 $user = Auth::user();
                 if ($user->user_type == 'super') {
-                    return redirect('admin');
+                    return redirect()->intended('admin');;
                 } elseif ($user->user_type == 'staff') {
-                    return redirect('staff');
+                    return redirect()->intended('staff');
                 }
                 return redirect('login');
             }
