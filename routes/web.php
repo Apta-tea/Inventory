@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('profile/{user}/edit',[App\Http\Controllers\UserController::class, 'profile_edit']);
         Route::resource('country', App\Http\Controllers\CountryController::class);
         Route::post('country/search', [App\Http\Controllers\CountryController::class,'search']);
+        Route::resource('unit', App\Http\Controllers\UnitController::class);
+        Route::post('unit/search', [App\Http\Controllers\UnitController::class,'search']);
 
     });
     Route::group(['middleware' => ['check_login:staff']], function () {
