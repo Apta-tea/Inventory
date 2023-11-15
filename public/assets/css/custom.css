@@ -76,3 +76,6 @@
 .clear {
   clear: both;
 }
+td form {
+	display: inline-block;
+}

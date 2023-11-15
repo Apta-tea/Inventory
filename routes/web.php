@@ -31,6 +31,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('supplier', App\Http\Controllers\SupplierController::class);
         Route::resource('purchase', App\Http\Controllers\PurchaseController::class);
         Route::resource('invoice', App\Http\Controllers\InvoiceController::class);
+        Route::resource('user', App\Http\Controllers\UserController::class);
+        Route::get('profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
+        Route::patch('profile_update/{user}', [App\Http\Controllers\UserController::class, 'profile_update']);
+        Route::get('profile/{user}/edit',[App\Http\Controllers\UserController::class, 'profile_edit']);
+        Route::resource('country', App\Http\Controllers\CountryController::class);
+        Route::post('country/search', [App\Http\Controllers\CountryController::class,'search']);
 
     });
     Route::group(['middleware' => ['check_login:staff']], function () {

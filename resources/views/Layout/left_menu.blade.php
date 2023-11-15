@@ -2,13 +2,13 @@
 	<ul class="sidebar-menu" data-widget="tree">
 		<li class="sidemenu-user-profile d-flex align-items-center">
 			<div class="user-thumbnail">
-                @if (File::exists(public_path().'/'.Auth::user()->file_picture))
+                @if (File::exists(public_path().'/assets/'.Auth::user()->file_picture))
 					  <img
-					src="{{ public_path().'/'.Auth::user()->file_picture }}"
+					src="{{ asset('/assets/'.Auth::user()->file_picture) }}"
 					alt="">
                 @else
 					  <img class="border-radius-50"
-					src="{{ public_path().'/uploads/no_image.jpg' }}">
+					src="{{ asset('/assets/uploads/no_image.jpg') }}">
 				@endif
             </div>
 			<div class="user-content">
@@ -16,144 +16,141 @@
 				<!--<span>Pro User</span>-->
 			</div>
 		</li>
-        <li @if(url()->current()=="admin")
-					class="active" >
-					@endif
+        <li @if (str_contains(Request::url(),'admin'))
+					class="active" @endif >
 					<a href="{{ url('admin') }}"><i class="icon_lifesaver"></i> <span>Dashboard</span></a></li>
-			
         @php
         $menu_open = false;
-		@endphp
-        @if (url()->current() == "profile" || url()->current() == "country" || url()->current() == "company" || url()->current() == "users") 
-            $menu_open = true;
-        @endif
+        if ( str_contains(Request::url(),'profile') || str_contains(Request::url(),'country') || str_contains(Request::url(),'company') || str_contains(Request::url(),'user')) 
+            {$menu_open = true;}			
+        @endphp
         <li
-			class="treeview @if($menu_open==true)menu-open
-			@endif"><a
+			class="treeview {{ ($menu_open==true)?'menu-open':'' }}
+			"><a
 			href="javascript:void(0)"><i class="icon_key_alt"></i> <span>Settings</span>
 				<i class="fa fa-angle-right"></i></a>
-			<ul class="treeview-menu" @if($menu_open==true)
-				style="display: block;" @endif>
-				<li @if(url()->current()=="profile")
-					class="active" @endif><a
-					href="{{ url('admin/profile/index') }}"><i
+			<ul class="treeview-menu" @if ($menu_open==true)
+				style="display: block;" @endif >
+				<li @if (str_contains(Request::url(),'profile'))
+					class="active" @endif ><a
+					href="{{ url('profile') }}"><i
 						class="icon_table"></i>Profile</a></li>
-				<li @if(url()->current()=="country")
+				<li @if(str_contains(Request::url(),'country'))
 					class="active" @endif><a
-					href="{{ url('admin/country/index') }}"><i
+					href="{{ url('country') }}"><i
 						class="icon_table"></i>Country</a></li>
-				<li @if( url()->current()=="company")
+				<li @if(str_contains(Request::url(),'unit'))
 					class="active" @endif><a
-					href="{{ url('admin/company/index') }}"><i
+					href="{{ url('country') }}"><i
+						class="icon_table"></i>Unit</a></li>
+				<li @if( str_contains(Request::url(),'company'))
+					class="active" @endif><a
+					href="{{ url('company') }}"><i
 						class="icon_table"></i>Company</a></li>
-				<li @if(url()->current()=="users")
+				<li @if(str_contains(Request::url(),'user'))
 					class="active" @endif><a
-					href="{{ url('admin/users/index') }}"><i
+					href="{{ url('user') }}"><i
 						class="icon_table"></i>Users</a></li>
 			</ul></li> 
         
         @php
         $menu_open = false;
+        if (str_contains(Request::url(),'category') || str_contains(Request::url(),'sub_category') || str_contains(Request::url(),'customers') || str_contains(Request::url(),'supplier') || str_contains(Request::url(),'product')) 
+            {$menu_open = true;}
 		@endphp
-        @if(url()->current() == "category" || url()->current() == "sub_category" || url()->current() == "customers" || url()->current() == "supplier" || url()->current() == "customers" || url()->current() == "product") 
-            $menu_open = true;
-        @endif
         <li
-			class="treeview @if($menu_open==true)menu-open @endif"><a
+		class="treeview {{ ($menu_open==true)?'menu-open':'' }}"><a
 			href="javascript:void(0)"><i class="icon_genius"></i> <span>Product
 					Settings</span> <i class="fa fa-angle-right"></i></a>
 			<ul class="treeview-menu" @if($menu_open==true)
 				style="display: block;"@endif>
-				<li @if(url()->current()=="category")
+				<li @if(str_contains(Request::url(),'category'))
 					class="active" @endif><a
-					href="{{ url('admin/category/index') }}"><i
+					href="{{ url('category') }}"><i
 						class="icon_table"></i>Category</a></li>
-				<li @if(url()->current()=="sub_category")
+				<li @if(str_contains(Request::url(),'sub_category'))
 					class="active" @endif><a
-					href="{{ url('admin/sub_category/index') }}"><i
+					href="{{ url('sub_category') }}"><i
 						class="icon_table"></i>Sub Category</a></li>
-				<li @if(url()->current()=="customers")
+				<li @if(str_contains(Request::url(),'customers'))
 					class="active" @endif><a
-					href="{{ url('admin/customers/index') }}"><i
+					href="{{ url('customers') }}"><i
 						class="icon_table"></i>Customers</a></li>
-				<li @if(url()->current()=="supplier")
+				<li @if(str_contains(Request::url(),'supplier'))
 					class="active" @endif><a
-					href="{{ url('admin/supplier/index') }}"><i
+					href="{{ url('supplier') }}"><i
 						class="icon_table"></i>Supplier</a></li>
-				<li @if(url()->current()=="product")
+				<li @if(str_contains(Request::url(),'product'))
 					class="active" @endif><a
-					href="{{ url('admin/product/index') }}"><i
+					href="{{ url('product') }}"><i
 						class="icon_table"></i>Product</a></li>
 			</ul></li> 
         
         @php
         $menu_open = false;
+        if (str_contains(Request::url(),'purchase') || str_contains(Request::url(),'item_purchase')) 
+            {$menu_open = true;}
 		@endphp
-        @if (url()->current() == "purchase" || url()->current() == "item_purchase") 
-            $menu_open = true;
-        @endif
         <li
-			class="treeview @if($menu_open==true)menu-open @endif"><a
+		class="treeview {{ ($menu_open==true)?'menu-open':'' }}"><a
 			href="javascript:void(0)"><i class="icon_document_alt"></i> <span>Purchase</span>
 				<i class="fa fa-angle-right"></i></a>
 			<ul class="treeview-menu" @if($menu_open==true)
 				style="display: block;"@endif>
-				<li @if(url()->current()=="purchase")
+				<li @if(str_contains(Request::url(),'purchase'))
 					class="active" @endif><a
-					href="{{ url('admin/purchase/index') }}"><i
+					href="{{ url('purchase') }}"><i
 						class="icon_table"></i>Purchase</a></li>
-				<li @if(url()->current()=="item_purchase")
+				<li @if(str_contains(Request::url(),'item_purchase'))
 					class="active" @endif><a
-					href="{{ url('admin/item_purchase/index') }}"><i
+					href="{{ url('item_purchase') }}"><i
 						class="icon_table"></i>Item Purchase</a></li>
 			</ul></li> 
         @php
         $menu_open = false;
+        if (str_contains(Request::url(),'invoice') || str_contains(Request::url(),'item_invoice')) 
+            {$menu_open = true;}
 		@endphp
-        @if (url()->current() == "invoice" || url()->current() == "item_invoice") 
-            $menu_open = true;
-        @endif
         <li
-			class="treeview @if($menu_open==true)menu-open @endif"><a
+		class="treeview {{ ($menu_open==true)?'menu-open':'' }}"><a
 			href="javascript:void(0)"><i class="icon_cart_alt"></i> <span>Sell</span>
 				<i class="fa fa-angle-right"></i></a>
 			<ul class="treeview-menu" @if($menu_open==true)
 				style="display: block;"@endif>
-				<li @if(url()->current()=="invoice")
+				<li @if(str_contains(Request::url(),'invoice'))
 					class="active" @endif><a
-					href="{{ url('admin/invoice/index') }}"><i
+					href="{{ url('invoice') }}"><i
 						class="icon_table"></i>Invoice</a></li>
-				<li @if(url()->current()=="item_invoice")
+				<li @if(str_contains(Request::url(),'item_invoice'))
 					class="active" @endif><a
-					href="{{ url('admin/item_invoice/index') }}"><i
+					href="{{ url('item_invoice') }}"><i
 						class="icon_table"></i>Item Invoice</a></li>
 			</ul></li>
         @php
         $menu_open = false;
+        if (str_contains(Request::url(),'report_product') ||
+			str_contains(Request::url(),'report_purchase') ||
+		    str_contains(Request::url(),'report_invoice'))
+            {$menu_open = true;}
 		@endphp
-        @if (url()->current() == "report_product" ||
-		    url()->current() == "report_purchase" ||
-		    url()->current() == "report_invoice")
-            $menu_open = true;
-        @endif
         <li
-			class="treeview @if($menu_open==true)menu-open @endif"><a
+		class="treeview {{ ($menu_open==true)?'menu-open':'' }}"><a
 			href="javascript:void(0)"><i class="icon_easel"></i> <span>Report</span>
 				<i class="fa fa-angle-right"></i></a>
 			<ul class="treeview-menu" @if($menu_open==true)
 				style="display: block;" @endif>
 
-				<li @if(url()->current()=="report_product")
+				<li @if(str_contains(Request::url(),'report_product'))
 					class="active" @endif><a
-					href="{{ url('admin/report_product/index') }}"><i
+					href="{{ url('report_product') }}"><i
 						class="icon_table"></i>Products</a></li>
-				<li @if(url()->current()=="report_purchase")
+				<li @if(str_contains(Request::url(),'report_purchase'))
 					class="active" @endif><a
-					href="{{ url('admin/report_purchase/index') }}"><i
+					href="{{ url('report_purchase') }}"><i
 						class="icon_table"></i>Purchase</a></li>
-				<li @if(url()->current()=="report_invoice")
+				<li @if(str_contains(Request::url(),'report_invoice'))
 					class="active" @endif><a
-					href="{{ url('admin/report_invoice/index') }}"><i
+					href="{{ url('report_invoice') }}"><i
 						class="icon_table"></i>Sell</a></li>
 			</ul></li>
             

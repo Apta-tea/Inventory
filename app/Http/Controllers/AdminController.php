@@ -8,7 +8,6 @@ use App\Models\customers;
 use App\Models\suppliers;
 use App\Models\purchases;
 use App\Models\invoices;
-use App\Models\companys;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -29,8 +28,7 @@ class AdminController extends Controller
          $data['purchase_total_cost'] = purchases::sum('total_cost');
          // sum invoice
          $data['invoice_total_cost'] = invoices::sum('total_cost');
-         $data['company'] = companys::all();
-        $data['_view'] = 'admin_homepage';
+         $data['_view'] = 'admin_homepage';
         Return view('Layout.body', $data);
     }
 

@@ -2,13 +2,13 @@
 	<li class="nav-item dropdown">
 		<button type="button" class="btn dropdown-toggle"
 			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        @if (File::exists(public_path().'/'.Auth::user()->file_picture))
+        @if (File::exists(asset('/assets/'.Auth::user()->file_picture)))
 			  <img class="border-radius-50"
-				src="{{ public_path().'/'.Auth::user()->file_picture }}"
+				src="{{ asset('/assets/'.Auth::user()->file_picture) }}"
 				alt="">
         @else
 			  <img class="border-radius-50"
-				src="{{ public_path().'/uploads/no_image.jpg' }}">
+				src="{{ asset('/assets/uploads/no_image.jpg') }}">
 		@endif
         </button>
 		<div class="dropdown-menu dropdown-menu-right">
@@ -17,13 +17,13 @@
 				<div class="user-profile-heading">
 					<!-- Thumb -->
 					<div class="profile-thumbnail">
-                    @if (File::exists(public_path().'/'.Auth::user()->file_picture))
+                    @if (File::exists(asset('/assets/'.Auth::user()->file_picture)))
 					      <img class="border-radius-50"
-						  src="{{ public_path().'/'.Auth::user()->file_picture }}"
+						  src="{{ asset('/assets/'.Auth::user()->file_picture) }}"
 							alt="">
                     @else
 					      <img class="border-radius-50"
-						  src="{{ public_path().'/uploads/no_image.jpg' }}">
+						  src="{{ asset('/assets/uploads/no_image.jpg') }}">
 					@endif
                     </div>
 					<!-- Profile Text -->
@@ -32,10 +32,10 @@
 						<!--<span>{{ Auth::user()->first_name }}</span>-->
 					</div>
 				</div>
-				<a href="{{ url('admin/profile/index') }}"
+				<a href="{{ url('user') }}"
 					class="dropdown-item"><i class="ti-user text-default"
 					aria-hidden="true"></i> My profile</a> <a
-					href="{{ url('admin/login/do_logout') }}"
+					href="{{ url('logout') }}"
 					class="dropdown-item"><i class="ti-unlink text-warning"
 					aria-hidden="true"></i> Sign-out</a>
 			</div>

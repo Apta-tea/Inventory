@@ -10,11 +10,10 @@
 
 <!-- Title -->
 <title>Admin 
-            @if (url()->current() == 'admin')
-                //stuff you want to perform
+            @if (Route::current()->getName() == 'admin')
                 {{ Home }}
             @else
-                {{ url()->current() }}
+                {{ Route::current()->getName() }}
             @endif
 </title>
 
@@ -47,19 +46,22 @@
 		<div class="ecaps-sidemenu-area">
 			<!-- Desktop Logo -->
 			<div class="ecaps-logo">
-				@if (count($company) && File::exists(public_path().'/'.$company[0]->file_company_logo))
+				@php
+				$company = \App\Models\companys::all(); 
+				@endphp
+				@if (count($company) && File::exists(asset('/assets/'.$company[0]->file_company_logo)))
 					<a href="{{ url()->current() }}"><img
 					class="desktop-logo"
-					src="{{ public_path().'/'.$company[0]->file_company_logo }}"
+					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
 					alt="Desktop Logo"> <img class="small-logo"
-					src="{{ public_path().'/'.$company[0]->file_company_logo }}"
+					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
 					alt="Mobile Logo"></a>
                 @else
 					<a href="{{ url()->current() }}"><img
 					class="desktop-logo"
-					src="{{ public_path('/assets/uploads/logo.png') }}
+					src="{{ asset('/assets/uploads/logo.png') }}"
 					alt="Desktop Logo"> <img class="small-logo"
-					src="{{ public_path('/assets/uploads/logo.png') }}
+					src="{{ asset('/assets/uploads/logo.png') }}"
 					alt="Mobile Logo"></a>
                 @endif
             </div>
@@ -81,19 +83,19 @@
 				<div class="left-side-content-area d-flex align-items-center">
 					<!-- Mobile Logo -->
 					<div class="mobile-logo mr-3 mr-sm-4">
-				@if (File::exists(public_path().'/'.$company[0]->file_company_logo))
+				@if (File::exists(asset('/assets/'.$company[0]->file_company_logo)))
 					<a href="{{ url()->current() }}"><img
 					class="desktop-logo"
-					src="{{ public_path().'/'.$company[0]->file_company_logo }}"
+					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
 					alt="Desktop Logo"> <img class="small-logo"
-					src="{{ public_path().'/'.$company[0]->file_company_logo }}"
+					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
 					alt="Mobile Logo"></a>
                 @else
 					<a href="{{ url()->current() }}"><img
 					class="desktop-logo"
-					src="{{ public_path('/assets/uploads/logo.png') }}
+					src="{{ asset('/assets/uploads/logo.png') }}"
 					alt="Desktop Logo"> <img class="small-logo"
-					src="{{ public_path('/assets/uploads/logo.png"
+					src="{{ asset('/assets/uploads/logo.png') }}"
 					alt="Mobile Logo"></a>
                 @endif
                     </div>
