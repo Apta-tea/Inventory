@@ -10,10 +10,10 @@
 
 <!-- Title -->
 <title>Admin 
-            @if (Route::current()->getName() == 'admin')
-                {{ Home }}
+            @if (request()->route()->uri() == 'admin')
+                {{ 'Home' }}
             @else
-                {{ Route::current()->getName() }}
+                {{ request()->route()->uri() }}
             @endif
 </title>
 
@@ -47,7 +47,7 @@
 			<!-- Desktop Logo -->
 			<div class="ecaps-logo">
 				@php
-				$company = \App\Models\companys::all(); 
+				$company = \App\Models\Company::all(); 
 				@endphp
 				@if (count($company) && File::exists(asset('/assets/'.$company[0]->file_company_logo)))
 					<a href="{{ url()->current() }}"><img

@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('country/search', [App\Http\Controllers\CountryController::class,'search']);
         Route::resource('unit', App\Http\Controllers\UnitController::class);
         Route::post('unit/search', [App\Http\Controllers\UnitController::class,'search']);
+        Route::resource('company', App\Http\Controllers\CompanyController::class);
+        Route::post('company/search', [App\Http\Controllers\CompanyController::class,'search']);
 
     });
     Route::group(['middleware' => ['check_login:staff']], function () {

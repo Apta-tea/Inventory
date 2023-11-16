@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class purchases extends Model
+class Supplier extends Model
 {
     //use HasFactory;
     protected $fillable = [
 
-        'purchase_no','supplier_id','date_of_purchase','users_id','description','internal_notes','total_cost','amount_paid',
+        'company','supplier_name','email','address','city','state','zip','phone_no',
     ];
 
 

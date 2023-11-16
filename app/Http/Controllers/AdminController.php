@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use App\Models\customers;
-use App\Models\suppliers;
-use App\Models\purchases;
-use App\Models\invoices;
+use App\Models\Customer;
+use App\Models\Supplier;
+use App\Models\Purchase;
+use App\Models\Invoice;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -21,13 +21,13 @@ class AdminController extends Controller
     {
         //
          // total customers
-         $data['total_customers'] = customers::all()->count();
+         $data['total_customers'] = Customer::all()->count();
          // total suppliers
-         $data['total_supplier'] = suppliers::all()->count();
+         $data['total_supplier'] = Supplier::all()->count();
          // sum purchase
-         $data['purchase_total_cost'] = purchases::sum('total_cost');
+         $data['purchase_total_cost'] = Purchase::sum('total_cost');
          // sum invoice
-         $data['invoice_total_cost'] = invoices::sum('total_cost');
+         $data['invoice_total_cost'] = Invoice::sum('total_cost');
          $data['_view'] = 'admin_homepage';
         Return view('Layout.body', $data);
     }
