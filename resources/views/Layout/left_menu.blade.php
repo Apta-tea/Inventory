@@ -21,7 +21,7 @@
 					<a href="{{ url('admin') }}"><i class="icon_lifesaver"></i> <span>Dashboard</span></a></li>
         @php
         $menu_open = false;
-        if ( str_contains(Request::url(),'profile') || str_contains(Request::url(),'country') || str_contains(Request::url(),'unit') || str_contains(Request::url(),'company') || str_contains(Request::url(),'user')) 
+        if ( str_contains(Request::url(),'profile') || str_contains(Request::url(),'country') || str_contains(Request::url(),'company') || str_contains(Request::url(),'user')) 
             {$menu_open = true;}			
         @endphp
         <li
@@ -41,7 +41,7 @@
 						class="icon_table"></i>Country</a></li>
 				<li @if(str_contains(Request::url(),'unit'))
 					class="active" @endif><a
-					href="{{ url('unit') }}"><i
+					href="{{ url('country') }}"><i
 						class="icon_table"></i>Unit</a></li>
 				<li @if( str_contains(Request::url(),'company'))
 					class="active" @endif><a
