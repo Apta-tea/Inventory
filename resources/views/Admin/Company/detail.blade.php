@@ -31,8 +31,8 @@
 	<tr>
 		<td>File Company Logo</td>
 		<td>
-		@if (File::exists(asset('/assets/'.$company->file_company_logo)))
-    	<img src="{{ asset('/assets/'.$c->file_company_logo) }}" class="picture_50x50">
+		@if (File::exists(public_path().'/assets/'.$company->file_company_logo))
+    	<img src="{{ asset('/assets/'.$company->file_company_logo) }}" class="picture_50x50">
         @else 
        	<img src="{{ asset('/assets/uploads/no_image.jpg') }}" class="picture_50x50">
         @endif
@@ -41,8 +41,8 @@
 	<tr>
 		<td>File Report Logo</td>
 		<td>
-		@if (File::exists(asset('/assets/'.$company->file_report_logo)))
-        <img src="{{ asset('/assets/'.$c->file_report_logo) }}" class="picture_50x50">
+		@if (File::exists(public_path().'/assets/'.$company->file_report_logo))
+        <img src="{{ asset('/assets/'.$company->file_report_logo) }}" class="picture_50x50">
         @else
         <img src="{{ asset('/assets/uploads/no_image.jpg') }}" class="picture_50x50">
         @endif
@@ -51,8 +51,8 @@
 	<tr>
 		<td>File Report Background</td>
 		<td>
-		@if (File::exists(asset('/assets/'.$company->file_report_background)))
-        <img src="{{ asset('/assets/'.$c->file_report_background) }}" class="picture_50x50">
+		@if (File::exists(public_path().'/assets/'.$company->file_report_background))
+        <img src="{{ asset('/assets/'.$company->file_report_background) }}" class="picture_50x50">
         @else
         <img src="{{ asset('/assets/uploads/no_image.jpg') }}" class="picture_50x50">
         @endif	

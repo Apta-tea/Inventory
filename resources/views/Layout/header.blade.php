@@ -49,7 +49,7 @@
 				@php
 				$company = \App\Models\Company::all(); 
 				@endphp
-				@if (count($company) && File::exists(asset('/assets/'.$company[0]->file_company_logo)))
+				@if (count($company) && File::exists(public_path().'/assets/'.$company[0]->file_company_logo)))
 					<a href="{{ url()->current() }}"><img
 					class="desktop-logo"
 					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
@@ -83,7 +83,7 @@
 				<div class="left-side-content-area d-flex align-items-center">
 					<!-- Mobile Logo -->
 					<div class="mobile-logo mr-3 mr-sm-4">
-				@if (File::exists(asset('/assets/'.$company[0]->file_company_logo)))
+				@if (File::exists(public_path().'/assets/'.$company[0]->file_company_logo)))
 					<a href="{{ url()->current() }}"><img
 					class="desktop-logo"
 					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class CompanyController extends Controller
 {
@@ -44,8 +46,30 @@ class CompanyController extends Controller
     {
         //
         $data = $request->all();
-        Company::create($data);
+        $comp = Company::create($data);
+        if (!empty($request->file('file_company_logo'))){
+            $name = $request->file('file_company_logo')->getClientOriginalName();
+            $path = $request->file('file_company_logo')->move(public_path().'/assets/',$name);
+            $file = ['file_company_logo' => $name];
+            $company = Company::find($comp->id);
+            $company->update($file);
+            }
+            if (!empty($request->file('file_report_logo'))){
+            $name = $request->file('file_report_logo')->getClientOriginalName();
+            $path = $request->file('file_report_logo')->move(public_path().'/assets/',$name);
+            $file = ['file_report_logo' => $name];
+            $company = Company::find($comp->id);
+            $company->update($file);
+            }
+            if (!empty($request->file('file_report_background'))){
+            $name = $request->file('file_report_background')->getClientOriginalName();
+            $path = $request->file('file_report_background')->move(public_path().'/assets/',$name);
+            $file = ['file_report_background' => $name];
+            $company = Company::find($comp->id);
+            $company->update($file);
+            }
         return redirect('company')->with('status', 'Company added!');
+        
     }
 
     /**
@@ -87,8 +111,28 @@ class CompanyController extends Controller
     {
         //
         $data = $request->all();
-        $country = Company::find($id);
-        $country->update($data);
+        $company = Company::find($id);
+        $company->update($data);
+
+            if (!empty($request->file('file_company_logo'))){
+            $name = $request->file('file_company_logo')->getClientOriginalName();
+            $path = $request->file('file_company_logo')->move(public_path().'/assets/',$name);
+            $file = ['file_company_logo' => $name];
+            $company->update($file);
+            }
+            if (!empty($request->file('file_report_logo'))){
+            $name = $request->file('file_report_logo')->getClientOriginalName();
+            $path = $request->file('file_report_logo')->move(public_path().'/assets/',$name);
+            $file = ['file_report_logo' => $name];
+            $company->update($file);
+            }
+            if (!empty($request->file('file_report_background'))){
+            $name = $request->file('file_report_background')->getClientOriginalName();
+            $path = $request->file('file_report_background')->move(public_path().'/assets/',$name);
+            $file = ['file_report_background' => $name];
+            $company->update($file);
+            }
+       
         $lastPage = session('current_page', 1);
         return redirect('company')->with('status', 'Company updated!');
     }
