@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class CompanyController extends Controller
 {
@@ -156,7 +158,7 @@ class CompanyController extends Controller
     {
         //
         $search = $request['keyword'];
-        $data['company'] = Company::where('company_name','LIKE',"%{$search}%")->paginate(10);
+        $data['company'] = Company::where('company_name','LIKE',"%{$search}%");
         $data['_view'] = 'Admin.Company.result';
         return view('Layout.body',$data);
     }

@@ -44,9 +44,6 @@
     @endforeach
 </table>
 @endisset
-<!--Pagination-->
-{{ $company->links() }}
-<!--End of Pagination//-->
 @else
 <div align="center">
 	<h3>Data is not exists</h3>
