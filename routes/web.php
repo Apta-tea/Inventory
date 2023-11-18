@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('company/search', [App\Http\Controllers\CompanyController::class,'search']);
 
     });
-    Route::group(['middleware' => ['check_login:staff']], function () {
+    Route::group(['middleware' => ['check_login:super','check_login:staff']], function () {
         Route::get('staff', [StaffController::class, 'index']);
     });
 });
