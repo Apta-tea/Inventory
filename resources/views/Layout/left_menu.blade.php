@@ -2,7 +2,7 @@
 	<ul class="sidebar-menu" data-widget="tree">
 		<li class="sidemenu-user-profile d-flex align-items-center">
 			<div class="user-thumbnail">
-                @if (File::exists(public_path().'/assets/'.Auth::user()->file_picture))
+                @if (!empty(Auth::user()->file_picture) && File::exists(public_path().'/assets/'.Auth::user()->file_picture))
 					  <img
 					src="{{ asset('/assets/'.Auth::user()->file_picture) }}"
 					alt="">
@@ -16,18 +16,20 @@
 				<!--<span>Pro User</span>-->
 			</div>
 		</li>
-        <li @if (str_contains(Request::url(),'admin'))
-					class="active" @endif >
-					<a href="{{ url('admin') }}"><i class="icon_lifesaver"></i> <span>Dashboard</span></a></li>
+        <li class="active" >
+		<a @if (Auth::user()->user_type == "super") href="{{ url('admin') }}" @else href="{{ Auth::user()->user_type }}" @endif ><i class="icon_lifesaver"></i> <span>Dashboard</span></a>
+		</li>
         @php
+		$display = false;
         $menu_open = false;
         if ( str_contains(Request::url(),'profile') || str_contains(Request::url(),'country') || str_contains(Request::url(),'unit') || str_contains(Request::url(),'company') || str_contains(Request::url(),'user')) 
-            {$menu_open = true;}			
-        @endphp
-        <li
-			class="treeview {{ ($menu_open==true)?'menu-open':'' }}
-			"><a
-			href="javascript:void(0)"><i class="icon_key_alt"></i> <span>Settings</span>
+            {$menu_open = true;}
+		if (Auth::user()->user_type == "super")
+		$display = true;		
+        @endphp	
+		<div @if ($display==false) class="hide" @endif>
+        <li class="treeview {{ ($menu_open==true)?'menu-open':'' }}" >
+			<a href="javascript:void(0)"><i class="icon_key_alt"></i> <span>Settings</span>
 				<i class="fa fa-angle-right"></i></a>
 			<ul class="treeview-menu" @if ($menu_open==true)
 				style="display: block;" @endif >
@@ -51,8 +53,8 @@
 					class="active" @endif><a
 					href="{{ url('user') }}"><i
 						class="icon_table"></i>Users</a></li>
-			</ul></li> 
-        
+			</ul></li>
+		</div>
         @php
         $menu_open = false;
         if (str_contains(Request::url(),'category') || str_contains(Request::url(),'sub_category') || str_contains(Request::url(),'customers') || str_contains(Request::url(),'supplier') || str_contains(Request::url(),'product')) 
@@ -85,7 +87,6 @@
 					href="{{ url('product') }}"><i
 						class="icon_table"></i>Product</a></li>
 			</ul></li> 
-        
         @php
         $menu_open = false;
         if (str_contains(Request::url(),'purchase') || str_contains(Request::url(),'item_purchase')) 
@@ -156,3 +157,4 @@
             
 	</ul>
 </nav>
+

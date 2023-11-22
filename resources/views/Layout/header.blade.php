@@ -47,14 +47,14 @@
 			<!-- Desktop Logo -->
 			<div class="ecaps-logo">
 				@php
-				$company = \App\Models\Company::all(); 
+				$company = \App\Models\Company::where('status','active')->first(); 
 				@endphp
-				@if (count($company) && File::exists(public_path().'/assets/'.$company[0]->file_company_logo)))
+				@if (!empty($company->file_company_logo) && File::exists(public_path().'/assets/'.$company->file_company_logo))
 					<a href="{{ url()->current() }}"><img
 					class="desktop-logo"
-					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
+					src="{{ asset('/assets/'.$company->file_company_logo) }}"
 					alt="Desktop Logo"> <img class="small-logo"
-					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
+					src="{{ asset('/assets/'.$company->file_company_logo) }}"
 					alt="Mobile Logo"></a>
                 @else
 					<a href="{{ url()->current() }}"><img
@@ -65,7 +65,6 @@
 					alt="Mobile Logo"></a>
                 @endif
             </div>
-
 			<!-- Side Nav -->
 			<div class="ecaps-sidenav" id="ecapsSideNav">
 				<!-- Side Menu Area -->
@@ -83,12 +82,12 @@
 				<div class="left-side-content-area d-flex align-items-center">
 					<!-- Mobile Logo -->
 					<div class="mobile-logo mr-3 mr-sm-4">
-				@if (File::exists(public_path().'/assets/'.$company[0]->file_company_logo)))
+				@if (!empty($company->file_company_logo) && File::exists(public_path().'/assets/'.$company->file_company_logo))
 					<a href="{{ url()->current() }}"><img
 					class="desktop-logo"
-					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
+					src="{{ asset('/assets/'.$company->file_company_logo) }}"
 					alt="Desktop Logo"> <img class="small-logo"
-					src="{{ asset('/assets/'.$company[0]->file_company_logo) }}"
+					src="{{ asset('/assets/'.$company->file_company_logo) }}"
 					alt="Mobile Logo"></a>
                 @else
 					<a href="{{ url()->current() }}"><img

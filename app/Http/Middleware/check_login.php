@@ -22,10 +22,10 @@ class check_login
         }
         $user = Auth::user();
 
-        if($user->user_type == $roles)
+        if($user->user_type == $roles){
             return $next($request);
+        }
 
-
-        return redirect('login')->with('error',"Access denied");
+        return redirect('/')->with('error',"Access denied");
     }
 }

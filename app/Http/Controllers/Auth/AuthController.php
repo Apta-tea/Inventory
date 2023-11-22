@@ -35,7 +35,7 @@ class AuthController extends Controller
             if (Auth::attempt($cred)) {
                 $user = Auth::user();
                 if ($user->user_type == 'super') {
-                    return redirect()->intended('admin');;
+                    return redirect()->intended('admin');
                 } elseif ($user->user_type == 'staff') {
                     return redirect()->intended('staff');
                 }

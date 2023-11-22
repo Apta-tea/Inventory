@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\Unit;
+use App\Models\countrys;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Session;
 
-class UnitController extends Controller
+class CountryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +17,13 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
-        $items = Unit::paginate(10);
-        $data['unit'] = $items;
-        $data['_view'] = 'Admin.Unit.index';
+        
+        $items = countrys::paginate(10);
+        $data['country'] = $items;
+        $data['_view'] = 'Admin.Country.index';
         session(['current_page' => $items->currentPage()]);
         return view('Layout.body',$data);
+         
     }
 
     /**
@@ -32,7 +34,7 @@ class UnitController extends Controller
     public function create()
     {
         //
-        $data['_view'] = 'Admin.Unit.form';
+        $data['_view'] = 'Admin.Country.form';
         return view('Layout.body',$data);
 
     }
@@ -47,8 +49,8 @@ class UnitController extends Controller
     {
         //
         $data = $request->all();
-        Unit::create($data);
-        return redirect('unit')->with('status', 'Unit added!');
+        countrys::create($data);
+        return redirect('country')->with('status', 'Country added!');
     }
 
     /**
@@ -60,9 +62,10 @@ class UnitController extends Controller
     public function show($id)
     {
         //
-        $data['unit'] = Unit::find($id);
-        $data['_view'] = 'Admin.Unit.detail';
+        $data['country'] = countrys::find($id);
+        $data['_view'] = 'Admin.Country.detail';
         return view('Layout.body',$data);
+
     }
 
     /**
@@ -74,9 +77,10 @@ class UnitController extends Controller
     public function edit($id)
     {
         //
-        $data['unit'] = Unit::find($id);
-        $data['_view'] = 'Admin.Unit.form';
+        $data['country'] = countrys::find($id);
+        $data['_view'] = 'Admin.Country.form';
         return view('Layout.body',$data);
+
     }
 
     /**
@@ -90,10 +94,10 @@ class UnitController extends Controller
     {
         //
         $data = $request->all();
-        $unit = Unit::find($id);
-        $unit->update($data);
+        $country = countrys::find($id);
+        $country->update($data);
         $lastPage = session('current_page', 1);
-        return redirect()->route('unit.index', ['page' => $lastPage])->with('status', 'Unit updated!');
+        return redirect()->route('country.index', ['page' => $lastPage])->with('status', 'Country updated!');
     }
 
     /**
@@ -104,18 +108,20 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
-        $unit = Unit::find($id);
-        $unit->delete($id);
+        $country = countrys::find($id);
+        $country->delete($id);
         $lastPage = session('current_page', 1);
-        return redirect()->route('unit.index', ['page' => $lastPage])->with('status', 'Unit deleted!');
+        return redirect()->route('country.index', ['page' => $lastPage])->with('status', 'Country deleted!');
     }
 
      public function search(Request $request)
     {
         //
         $search = $request['keyword'];
-        $data['unit'] = Unit::where('unit','LIKE',"%{$search}%");
-        $data['_view'] = 'Admin.Unit.result';
+        $data['country_s'] = countrys::where('country','LIKE',"%{$search}%");
+        $data['_view'] = 'Admin.Country.result';
         return view('Layout.body',$data);
     }
+
+
 }

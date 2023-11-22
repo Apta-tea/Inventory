@@ -68,6 +68,12 @@
 			<div class="col-md-8">
 			{{ Form::text('report_footer',$company->report_footer,['class'=>'form-control','id'=>'report_footer']) }}
 			</div>
+		</div>
+		<div class="form-group">
+			<label for="status" class="col-md-4 control-label">Status</label>
+			<div class="col-md-8">
+			{{ Form::select('status',['active'=>'active','inactive'=>'inactive'], null, ['placeholder' => '--Select--', 'class' => 'form-control', 'required']) }}
+			</div>
 		</div>		
 	</div>
 
@@ -152,6 +158,12 @@
 				Footer</label>
 			<div class="col-md-8">
 			{{ Form::text('report_footer',null,['class'=>'form-control','id'=>'report_footer']) }}
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="status" class="col-md-4 control-label">Status</label>
+			<div class="col-md-8">
+			{{ Form::select('status',['active'=>'active','inactive'=>'inactive'], null, ['placeholder' => '--Select--', 'class' => 'form-control', 'required']) }}
 			</div>
 		</div>		
 	</div>

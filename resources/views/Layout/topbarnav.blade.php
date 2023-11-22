@@ -2,7 +2,7 @@
 	<li class="nav-item dropdown">
 		<button type="button" class="btn dropdown-toggle"
 			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        @if (File::exists(public_path().'/assets/'.Auth::user()->file_picture))
+        @if (!empty(Auth::user()->file_picture) && File::exists(public_path().'/assets/'.Auth::user()->file_picture))
 			  <img class="border-radius-50"
 				src="{{ asset('/assets/'.Auth::user()->file_picture) }}"
 				alt="">
@@ -17,10 +17,10 @@
 				<div class="user-profile-heading">
 					<!-- Thumb -->
 					<div class="profile-thumbnail">
-                    @if (File::exists(public_path().'/assets/'.Auth::user()->file_picture))
+                    @if ( !empty(Auth::user()->file_picture) && File::exists( public_path().'/assets/'. Auth::user()->file_picture ))
 					      <img class="border-radius-50"
 						  src="{{ asset('/assets/'.Auth::user()->file_picture) }}"
-							alt="">
+							alt="{{ asset('/assets/uploads/no_image.jpg') }}">
                     @else
 					      <img class="border-radius-50"
 						  src="{{ asset('/assets/uploads/no_image.jpg') }}">
