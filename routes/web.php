@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('purchase', App\Http\Controllers\PurchaseController::class);
         Route::resource('invoice', App\Http\Controllers\InvoiceController::class);
         Route::resource('user', App\Http\Controllers\Admin\UserController::class);
+        Route::post('user/search', [App\Http\Controllers\Admin\UserController::class,'search']);
         Route::get('profile', [App\Http\Controllers\Admin\UserController::class, 'profile'])->name('profile');
         Route::patch('profile_update/{user}', [App\Http\Controllers\Admin\UserController::class, 'profile_update']);
         Route::get('profile/{user}/edit',[App\Http\Controllers\Admin\UserController::class, 'profile_edit']);
@@ -47,5 +48,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['check_login:staff']], function () {
         Route::get('staff', [StaffController::class, 'index']);
     });
-    Route::get('coba', [StaffController::class, 'coba']);
+    Route::resource('category', App\Http\Controllers\CategoryController::class);
+    Route::post('category/search', [App\Http\Controllers\CategoryController::class,'search']);
 });

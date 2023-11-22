@@ -159,7 +159,7 @@ class CompanyController extends Controller
     {
         //
         $search = $request['keyword'];
-        $data['company'] = Company::where('company_name','LIKE',"%{$search}%");
+        $data['company'] = Company::where('company_name','LIKE',"%{$search}%")->get();
         $data['_view'] = 'Admin.Company.result';
         return view('Layout.body',$data);
     }

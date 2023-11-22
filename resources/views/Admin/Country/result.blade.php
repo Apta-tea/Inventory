@@ -2,7 +2,7 @@
 	class="btn btn-info"><i class="arrow_left"></i> List</a>
 <h5 class="font-20 mt-15 mb-1">{{ str_replace('_',' ','Country') }}</h5>
 <!--Data display of country with id-->
-@if (count($country_s) > 0)
+@if (isset($country_s))
 <table class="table table-striped table-bordered">  
 <tr>
     <th>ID</th><th>Country</th>

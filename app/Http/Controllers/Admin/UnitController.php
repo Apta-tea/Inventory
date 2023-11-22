@@ -115,7 +115,7 @@ class UnitController extends Controller
     {
         //
         $search = $request['keyword'];
-        $data['unit'] = Unit::where('unit','LIKE',"%{$search}%");
+        $data['unit'] = Unit::where('unit','LIKE',"%{$search}%")->get();
         $data['_view'] = 'Admin.Unit.result';
         return view('Layout.body',$data);
     }

@@ -170,7 +170,7 @@ class UserController extends Controller
     {
         //
         $search = $request['keyword'];
-        $data['user'] = User::where('email','LIKE',"%{$search}%");
+        $data['user'] = User::where('email','LIKE',"%{$search}%")->get();
         $data['_view'] = 'Admin.User.result';
         return view('Layout.body',$data);
     }

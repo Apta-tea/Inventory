@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\countrys;
+use App\Models\Category;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Session;
 
-class CountryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +16,12 @@ class CountryController extends Controller
      */
     public function index()
     {
-        
-        $items = countrys::paginate(10);
-        $data['country'] = $items;
-        $data['_view'] = 'Admin.Country.index';
+        //
+        $items = Category::paginate(10);
+        $data['category'] = $items;
+        $data['_view'] = 'Staff.Category.index';
         session(['current_page' => $items->currentPage()]);
         return view('Layout.body',$data);
-         
     }
 
     /**
@@ -34,9 +32,8 @@ class CountryController extends Controller
     public function create()
     {
         //
-        $data['_view'] = 'Admin.Country.form';
+        $data['_view'] = 'Staff.Category.form';
         return view('Layout.body',$data);
-
     }
 
     /**
@@ -49,8 +46,8 @@ class CountryController extends Controller
     {
         //
         $data = $request->all();
-        countrys::create($data);
-        return redirect('country')->with('status', 'Country added!');
+        Category::create($data);
+        return redirect('category')->with('status', 'Category added!');
     }
 
     /**
@@ -62,10 +59,9 @@ class CountryController extends Controller
     public function show($id)
     {
         //
-        $data['country'] = countrys::find($id);
-        $data['_view'] = 'Admin.Country.detail';
+        $data['category'] = Category::find($id);
+        $data['_view'] = 'Staff.Category.detail';
         return view('Layout.body',$data);
-
     }
 
     /**
@@ -77,10 +73,9 @@ class CountryController extends Controller
     public function edit($id)
     {
         //
-        $data['country'] = countrys::find($id);
-        $data['_view'] = 'Admin.Country.form';
+        $data['category'] = Category::find($id);
+        $data['_view'] = 'Staff.Category.form';
         return view('Layout.body',$data);
-
     }
 
     /**
@@ -94,10 +89,10 @@ class CountryController extends Controller
     {
         //
         $data = $request->all();
-        $country = countrys::find($id);
-        $country->update($data);
+        $category = Category::find($id);
+        $category->update($data);
         $lastPage = session('current_page', 1);
-        return redirect()->route('country.index', ['page' => $lastPage])->with('status', 'Country updated!');
+        return redirect()->route('category.index', ['page' => $lastPage])->with('status', 'Category updated!');
     }
 
     /**
@@ -108,20 +103,18 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        $country = countrys::find($id);
-        $country->delete($id);
+        $category = Category::find($id);
+        $category->delete($id);
         $lastPage = session('current_page', 1);
-        return redirect()->route('country.index', ['page' => $lastPage])->with('status', 'Country deleted!');
+        return redirect()->route('category.index', ['page' => $lastPage])->with('status', 'Category deleted!');
     }
 
      public function search(Request $request)
     {
         //
         $search = $request['keyword'];
-        $data['country_s'] = countrys::where('country','LIKE',"%{$search}%")->get();
-        $data['_view'] = 'Admin.Country.result';
+        $data['category'] = Category::where('name','LIKE',"%{$search}%")->get();
+        $data['_view'] = 'Staff.Category.result';
         return view('Layout.body',$data);
     }
-
-
 }
