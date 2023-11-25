@@ -57,7 +57,7 @@
 		</div>
         @php
         $menu_open = false;
-        if (str_contains(Request::url(),'category') || str_contains(Request::url(),'scat') || str_contains(Request::url(),'customers') || str_contains(Request::url(),'supplier') || str_contains(Request::url(),'product')) 
+        if (str_contains(Request::url(),'category') || str_contains(Request::url(),'scat') || str_contains(Request::url(),'customer') || str_contains(Request::url(),'supplier') || str_contains(Request::url(),'product')) 
             {$menu_open = true;}
 		@endphp
         <li
@@ -74,9 +74,9 @@
 					class="active" @endif><a
 					href="{{ url('scat') }}"><i
 						class="icon_table"></i>Sub Category</a></li>
-				<li @if(str_contains(Request::url(),'customers'))
+				<li @if(str_contains(Request::url(),'customer'))
 					class="active" @endif><a
-					href="{{ url('customers') }}"><i
+					href="{{ url('customer') }}"><i
 						class="icon_table"></i>Customers</a></li>
 				<li @if(str_contains(Request::url(),'supplier'))
 					class="active" @endif><a

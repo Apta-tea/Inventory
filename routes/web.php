@@ -52,4 +52,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('category/search', [App\Http\Controllers\CategoryController::class,'search']);
     Route::resource('scat', App\Http\Controllers\SubCategoryController::class);
     Route::post('scat/search', [App\Http\Controllers\SubCategoryController::class,'search']);
+    Route::resource('customer', App\Http\Controllers\CustomerController::class);
+    Route::post('customer/search', [App\Http\Controllers\CustomerController::class,'search']);
 });
