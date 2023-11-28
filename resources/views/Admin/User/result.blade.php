@@ -15,7 +15,6 @@
 		<th>Dob</th>
 		<th>User Type</th>
 		<th>Status</th>
-		<th>Actions</th>
 	</tr>
 	@foreach($user as $c)
     <tr>

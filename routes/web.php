@@ -56,4 +56,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('customer/search', [App\Http\Controllers\CustomerController::class,'search']);
     Route::resource('supplier', App\Http\Controllers\SupplierController::class);
     Route::post('supplier/search', [App\Http\Controllers\SupplierController::class,'search']);
+    Route::resource('product', App\Http\Controllers\ProductController::class);
+    Route::post('product/search', [App\Http\Controllers\ProductController::class,'search']);
 });

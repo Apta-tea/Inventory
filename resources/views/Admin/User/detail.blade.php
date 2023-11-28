@@ -21,7 +21,7 @@
 	<tr>
 		<td>File Picture</td>
 		<td>
-                @if (File::exists(public_path().'/assets/'.$user->file_picture))
+                @if (!empty($user->file_picture) && File::exists(public_path().'/assets/'.$user->file_picture))
 					  <img src="{{ asset('/assets/'.$user->file_picture) }}" class='picture_100x100'>
                 @else
 					<img src="{{ public_path().'/assets/uploads/no_image.jpg' }}" class='picture_100x100'>
