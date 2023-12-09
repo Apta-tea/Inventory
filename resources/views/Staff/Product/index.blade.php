@@ -55,8 +55,8 @@
 			echo $n->name;
 			@endphp
 		</td>
-		<td>{{ $c->buying_price }}</td>
-		<td>{{ $c->selling_price }}</td>
+		<td>{{ number_format($c->buying_price) }}</td>
+		<td>{{ number_format($c->selling_price) }}</td>
 		<td>{{ $c->brand }}</td>
 		<td>
             @if (!empty($c->file_picture) && File::exists(public_path().'/assets/'.$c->file_picture))

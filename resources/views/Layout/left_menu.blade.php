@@ -89,12 +89,12 @@
 			</ul></li> 
         @php
         $menu_open = false;
-        if (str_contains(Request::url(),'purchase') || str_contains(Request::url(),'item_purchase')) 
+        if (str_contains(Request::url(),'purchase') || str_contains(Request::url(),'manufacture')) 
             {$menu_open = true;}
 		@endphp
         <li
 		class="treeview {{ ($menu_open==true)?'menu-open':'' }}"><a
-			href="javascript:void(0)"><i class="icon_document_alt"></i> <span>Purchase</span>
+			href="javascript:void(0)"><i class="icon_document_alt"></i> <span>Storage</span>
 				<i class="fa fa-angle-right"></i></a>
 			<ul class="treeview-menu" @if($menu_open==true)
 				style="display: block;"@endif>
@@ -102,10 +102,10 @@
 					class="active" @endif><a
 					href="{{ url('purchase') }}"><i
 						class="icon_table"></i>Purchase</a></li>
-				<li @if(str_contains(Request::url(),'item_purchase'))
+				<li @if(str_contains(Request::url(),'manufacture'))
 					class="active" @endif><a
-					href="{{ url('item_purchase') }}"><i
-						class="icon_table"></i>Item Purchase</a></li>
+					href="{{ url('manufacture') }}"><i
+						class="icon_table"></i>Manufacture</a></li>
 			</ul></li> 
         @php
         $menu_open = false;
@@ -114,7 +114,7 @@
 		@endphp
         <li
 		class="treeview {{ ($menu_open==true)?'menu-open':'' }}"><a
-			href="javascript:void(0)"><i class="icon_cart_alt"></i> <span>Sell</span>
+			href="javascript:void(0)"><i class="icon_cart_alt"></i> <span>Outgoing Goods</span>
 				<i class="fa fa-angle-right"></i></a>
 			<ul class="treeview-menu" @if($menu_open==true)
 				style="display: block;"@endif>

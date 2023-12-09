@@ -41,11 +41,11 @@
 	</tr>
 	<tr>
 		<td>Buying Price</td>
-		<td>{{ $product->buying_price }}</td>
+		<td>{{ number_format($product->buying_price) }}</td>
 	</tr>
 	<tr>
 		<td>Selling Price</td>
-		<td>{{ $product->selling_price }}</td>
+		<td>{{ number_format($product->selling_price) }}</td>
 	</tr>
 	<tr>
 		<td>Brand</td>

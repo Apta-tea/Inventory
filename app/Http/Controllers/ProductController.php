@@ -70,7 +70,7 @@ class ProductController extends Controller
     public function show($id)
     {
         //
-        $data['product'] = product::find($id);
+        $data['product'] = Product::find($id);
         $data['_view'] = 'Staff.Product.detail';
         return view('Layout.body',$data);
     }
