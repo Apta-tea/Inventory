@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $items = Product::paginate(10);
+        $items = Product::orderBy('id','desc')->take(100)->paginate(10);
         $data['product'] = $items;
         $data['_view'] = 'Staff.Product.index';
         session(['current_page' => $items->currentPage()]);

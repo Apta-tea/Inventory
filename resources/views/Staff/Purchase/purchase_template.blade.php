@@ -38,7 +38,7 @@
    
 <htmlpagefooter name="myfooter"  class="hide">                          
      <div align="center">
-               <br><span class="padding_10">Page {PAGENO} of {nbpg}</span> 
+               <br><span class="padding_10">Page {PAGE_NUM} of {PAGE_COUNT}</span> 
      </div>
 </htmlpagefooter>    
 
@@ -101,8 +101,8 @@ GENERAL INFO
 <table  cellspacing="3" cellpadding="3" class="table" align="center">
     <tr><td>Date of purchase</td><td>{{ $purchase->date_of_purchase }}</td></tr>
     <tr><td>Description</td><td>{{ $purchase->description }}</td></tr>
-    <tr><td>Total cost</td><td>{{ $purchase->total_cost }}</td></tr>
-    <tr><td>Amount paid</td><td>{{ $purchase->amount_paid }}</td></tr>		
+    <tr><td>Total cost</td><td>{{ number_format($purchase->total_cost) }}</td></tr>
+    <tr><td>Amount paid</td><td>{{ number_format($purchase->amount_paid) }}</td></tr>		
 </table>
 @else
 <!--No data-->

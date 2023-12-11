@@ -94,7 +94,7 @@
 		@endphp
         <li
 		class="treeview {{ ($menu_open==true)?'menu-open':'' }}"><a
-			href="javascript:void(0)"><i class="icon_document_alt"></i> <span>Storage</span>
+			href="javascript:void(0)"><i class="icon_document_alt"></i> <span>Receive Goods</span>
 				<i class="fa fa-angle-right"></i></a>
 			<ul class="treeview-menu" @if($menu_open==true)
 				style="display: block;"@endif>

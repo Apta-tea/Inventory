@@ -63,4 +63,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('purchase/get_product', [App\Http\Controllers\PurchaseController::class,'get_product']);
     Route::post('purchase/search', [App\Http\Controllers\PurchaseController::class,'search']);
     Route::get('purchase/download/{purchase}',[App\Http\Controllers\PurchaseController::class,'download']);
+    Route::get('purchase/export/{purchase}',[App\Http\Controllers\PurchaseController::class,'export']);
 });

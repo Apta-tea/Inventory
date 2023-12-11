@@ -13,6 +13,8 @@ use App\Models\Company;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\XlsExport;
 
 
 class PurchaseController extends Controller
@@ -25,7 +27,7 @@ class PurchaseController extends Controller
     public function index()
     {
         //
-        $items = Purchase::paginate(10);
+        $items = Purchase::orderBy('id','desc')->take(100)->paginate(10);
         $data['purchase'] = $items;
         $data['_view'] = 'Staff.Purchase.index';
         session(['current_page' => $items->currentPage()]);
@@ -205,18 +207,21 @@ class PurchaseController extends Controller
         $data['purchase'] = Purchase::find($id);
         $data['company'] = Company::where('status','active')->first();
         $data['supplier'] = Supplier::where('id',$purchase->supplier_id)->first();
-        $documentFileName = "receipt.pdf";
+        PDF::setOption(['dpi' => 96, 'defaultFont' => 'sans-serif', 'defaultPaperSize' => 'a4']);
         $pdf = PDF::loadview('Staff/Purchase/purchase_template',$data);
     	//return $pdf->download('receipt-pdf');
         return $pdf->stream();
-        //$pdf = PDF::loadView('Staff/Purchase/purchase_template', compact('purchase','company','supplier'));
-        //return $pdf->stream($documentFileName);
-        /* $mpdf = PDF::lo(['format'=> 'A4','mode' => 'utf-8',]);
-        ob_start();
-        $htm ='<div>'.view('Staff/Purchase/purchase_template',compact('purchase','company','supplier'))->render().'</div>';
-        $html = ob_get_clean();
-        $mpdf->WriteHTML($htm);
-        $mpdf->Output();
-        exit(); */
+    }
+
+    public function export($export_type)
+    {
+        if ($export_type == '2'){
+            return Excel::download(new XlsExport, 'purchase.xlsx');
+        }else if ($export_type == '1'){
+            $data['purchase'] = Purchase::orderBy('id','desc')->take(50)->get();
+            PDF::setOption(['dpi' => 96, 'defaultFont' => 'sans-serif', 'defaultPaperSize' => 'a4']);
+            $pdf = PDF::loadview('Staff/Purchase/print_template',$data);
+            return $pdf->download('purchase');
+        }
     }
 }

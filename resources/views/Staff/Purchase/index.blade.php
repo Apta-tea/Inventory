@@ -10,8 +10,8 @@
 		<i class="fa fa-download"></i> Export <select name="xeport_type" class="select"
 			onChange="window.location='{{ ('purchase/export') }}/'+this.value">
 			<option>Select..</option>
-			<option>Pdf</option>
-			<option>CSV</option>
+			<option value="1">Pdf</option>
+			<option value="2">Xlsx</option>
 		</select>
 	</div>
 	<div  class="float_right padding_10">
