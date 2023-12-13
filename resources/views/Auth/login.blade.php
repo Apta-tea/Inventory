@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="dark-color-overlay bg-img" style="background-image: url({{ url('public/assets/riktheme/img/bg-img/8.jpg') }});">
+<body class="dark-color-overlay bg-img" style="background-image: url({{ url('/assets/riktheme/img/bg-img/bg.png') }});">
 
 	<!-- Preloader -->
 	<div id="preloader"></div>

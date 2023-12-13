@@ -64,4 +64,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('purchase/search', [App\Http\Controllers\PurchaseController::class,'search']);
     Route::get('purchase/download/{purchase}',[App\Http\Controllers\PurchaseController::class,'download']);
     Route::get('purchase/export/{purchase}',[App\Http\Controllers\PurchaseController::class,'export']);
+    Route::resource('manufacture', App\Http\Controllers\ManufactureController::class);
+    Route::post('manufacture/get_supplier', [App\Http\Controllers\ManufactureController::class,'get_supplier']);
+    Route::post('manufacture/get_product', [App\Http\Controllers\ManufactureController::class,'get_product']);
+    Route::post('manufacture/search', [App\Http\Controllers\ManufactureController::class,'search']);
+    Route::get('manufacture/download/{purchase}',[App\Http\Controllers\ManufactureController::class,'download']);
+    Route::get('manufacture/export/{purchase}',[App\Http\Controllers\ManufactureController::class,'export']);
 });
