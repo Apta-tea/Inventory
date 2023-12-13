@@ -58,7 +58,8 @@ class ManufactureController extends Controller
         $this->validate($request,[
             'product_id' => ['required'],
             'amount' => ['required'],
-            'supplier_id' => ['required'],]);
+            'supplier_id' => ['required'],
+            'production_no' => ['required'],]);
 
          $data = array(
             'production_no'=>$request->production_no,

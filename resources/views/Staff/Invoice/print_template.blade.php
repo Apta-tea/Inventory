@@ -1,14 +1,14 @@
 <link rel="stylesheet"
 	href="{{ asset('assets/css/custom.css') }}">    
-<h3>{{ str_replace('_',' ','Purchase') }}</h3>
+<h3>{{ str_replace('_',' ','Invoice') }}</h3>
 Date: {{ date("Y-m-d") }}
 <hr>
 <table cellspacing="3" cellpadding="3" class="table" align="center">
 	<tr>
-        <th>Sl No</th>
-		<th>Purchase No</th>
-		<th>Supplier</th>
-		<th>Date Of purchase</th>
+        <th>Sl No.</th>
+		<th>Invoice No</th>
+		<th>Customers</th>
+		<th>Date Of Invoice</th>
 		<th>Description</th>
 		<th>Total Cost</th>
 		<th>Amount Paid</th>
@@ -16,20 +16,20 @@ Date: {{ date("Y-m-d") }}
 @php
     $sl_no=0;
 @endphp
-@foreach ($purchase as $c)
+@foreach ($invoice as $c)
 @php
 	   $sl_no = $sl_no+1;
 @endphp
     <tr>
         <td>{{ $sl_no }}.</td>
-		<td>{{ $c->purchase_no }}</td>
+		<td>{{ $c->invoice_no }}</td>
 		<td>
             @php
-            $p = App\Models\Supplier::where('id',$c->supplier_id)->value('supplier_name');
+            $p = App\Models\Customer::where('id',$c->customers_id)->value('customer_name');
             @endphp
             {{ $p }}
 		</td>
-		<td>{{ $c->date_of_purchase }}</td>
+		<td>{{ $c->date_of_invoice }}</td>
 		<td>{{ $c->description }}</td>
 		<td>{{ $c->total_cost }}</td>
 		<td>{{ $c->amount_paid }}</td>
@@ -47,7 +47,7 @@ Date: {{ date("Y-m-d") }}
 					<td>Item Total</td>
 				</tr>
 				@php
-				$item = App\Models\Item_purchase::where('purchase_id',$c->id)->get();
+				$item = App\Models\Item_invoice::where('invoice_id',$c->id)->get();
 				@endphp
 				@for ($i = 0; $i < count($item); $i ++)
 				<tr>
@@ -67,4 +67,4 @@ Date: {{ date("Y-m-d") }}
 	</tr>
 @endforeach
 </table>
-<!--End of Data display of purchase//-->
+<!--End of Data display of invoice//-->

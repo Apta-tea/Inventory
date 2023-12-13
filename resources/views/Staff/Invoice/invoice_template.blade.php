@@ -1,0 +1,112 @@
+<link rel="stylesheet"
+	href="{{ asset('assets/css/custom.css') }}">    
+<table class="table" align="center" width="100%"> 
+@if (!empty($company && $invoice && $customer))   
+    <tr>
+        <td width="30%">
+    		 @if (!empty($company->file_company_logo) && File::exists(public_path().'/assets/'.$company->file_company_logo)) 
+			  <img src="{{ asset('/assets/'.$company->file_company_logo) }}" class="picture_100x100">
+             @else
+            <img src="{{ asset('/assets/uploads/no_image.jpg') }}" class="picture_100x100">
+             @endif
+        </td>
+        <td align="center">      
+          <h3>{{ $company->company_name }}</h3>
+          {{ $company->address }}<br>
+          {{ $company->city }},{{ $company->state }},{{ $company->zip }},{{ $company->country }}<br>
+        </td>
+        <td  width="30%">
+        </td>
+    </tr>
+</table>
+
+<br><br><br>
+<!--*************************************************
+*********mpdf header footer page no******************
+****************************************************-->
+<htmlpageheader name="firstpage" class="hide">
+</htmlpageheader>
+
+<htmlpageheader name="otherpages" class="hide">
+    <span class="float_left"></span>
+    <span  class="padding_5"> &nbsp; &nbsp; &nbsp;
+     &nbsp; &nbsp; &nbsp;</span>
+    <span class="float_right"></span>         
+</htmlpageheader>      
+<sethtmlpageheader name="firstpage" value="on" show-this-page="1" />
+<sethtmlpageheader name="otherpages" value="on" /> 
+   
+<htmlpagefooter name="myfooter"  class="hide">                          
+     <div align="center">
+               <br><span class="padding_10">Page {PAGE_NUM} of {PAGE_COUNT}</span> 
+     </div>
+</htmlpagefooter>    
+
+<sethtmlpagefooter name="myfooter" value="on" />
+<!--*************************************************
+*********#////mpdf header footer page no******************
+****************************************************-->
+
+<div class="panel-heading">
+   <h3 class="invoice"><strong>INVOICE</strong></h3>
+   <b>Invoice NO: {{ $invoice->invoice_no }}</b>
+ </div>
+<br>
+BILL TO 
+<hr> 
+<table  cellspacing="3" cellpadding="3" class="table" align="left">
+      <tr><td>{{ $customer->customer_name }}</td></tr>  
+      <tr><td>{{ $customer->address }}
+           <br>
+          {{ $customer->zip }},{{ $customer->city }},{{ $customer->state }}</td></tr>
+      <tr><td>{{ $customer->phone_no }}</td></tr>
+      <tr><td>{{ $customer->email }}</td></tr>
+</table>        
+     
+<br>                     
+ITEMS  
+<hr>                 
+<!--Data display of invoice-->
+<table class="table" align="center" width="100%">    
+    <tr>
+        <th>Product</th>
+        <th>Item Cost</th>
+        <th>Item Quantity</th>
+        <th>Item Total</th>
+    </tr>
+       <tr>
+                @php
+				$item = App\Models\Item_invoice::where('invoice_id',$invoice->id)->get();
+				@endphp
+				@foreach ($item as $i) 
+                   <tr>
+                   <td align="center">
+					@php
+					$p = App\Models\Product::where('id',$i->product_id)->value('product_name');
+					echo $p;
+					@endphp
+                    </td>
+					<td align="center">{{ number_format($i->item_cost) }}</td>
+					<td align="center">{{ number_format($i->item_quantity) }}</td>
+					<td align="center">{{ number_format($i->item_total) }}</td>
+                @endforeach
+    </tr>
+</table>		
+<!--End of Data display of invoice//-->
+
+<br><br>
+GENERAL INFO
+<hr>
+<table  cellspacing="3" cellpadding="3" class="table" align="center">
+    <tr><td>Date of invoice</td><td>{{ $invoice->date_of_invoice }}</td></tr>
+    <tr><td>Description</td><td>{{ $invoice->description }}</td></tr>
+    <tr><td>Total cost</td><td>{{ number_format($invoice->total_cost) }}</td></tr>
+    <tr><td>Amount paid</td><td>{{ number_format($invoice->amount_paid) }}</td></tr>		
+</table>
+@else
+<!--No data-->
+<div align="center">
+	<h3>Data is not exists</h3>
+</div>
+@endif
+<!--End of No data//-->

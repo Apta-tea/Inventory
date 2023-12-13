@@ -61,7 +61,8 @@ class PurchaseController extends Controller
         $this->validate($request,[
             'product_id' => ['required'],
             'amount_paid' => ['required'],
-            'supplier_id' => ['required'],]);
+            'supplier_id' => ['required'],
+            'purchase_no' => ['required'],]);
 
          $data = array(
             'date_of_purchase'=>$request->date_of_purchase,
