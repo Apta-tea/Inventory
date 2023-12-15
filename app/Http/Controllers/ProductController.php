@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Sub_category;
 use App\Models\Unit;
 
+
 class ProductController extends Controller
 {
     //
@@ -138,4 +139,5 @@ class ProductController extends Controller
         $data['_view'] = 'Staff.Product.result';
         return view('Layout.body',$data);
     }
+
 }

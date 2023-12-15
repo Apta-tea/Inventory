@@ -64,10 +64,14 @@
                                     @endif
 
                                                 <h4 class="font-22 mb-30">Sign In</h4>
-
+									@if (\Session::has('status'))
+									<div class="alert alert-danger">
+										{{ session('status') }}
+									</div>
+									@endif
                                          
 										 <form method="POST" action="{{ route('login') }}">
-                        @csrf
+                        			@csrf
                                             <div class="form-group">
 											<label class="float-left" for="emailaddress"></label>
 											<input class="form-control" type="email" name="email"
@@ -123,6 +127,7 @@
 	<!-- ======================================
     ********* Page Wrapper Area End ***********
     ======================================= -->
+
 
 	<!-- Must needed plugins to the run this Template -->
 	<script src="{{ asset('/assets/riktheme/js/jquery.min.js') }}"></script>

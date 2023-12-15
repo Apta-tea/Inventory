@@ -83,3 +83,7 @@ td form {
 .hide{
 	display:none;  
   }
+
+/* .dataTables_filter {
+	float: left !important;
+ } */

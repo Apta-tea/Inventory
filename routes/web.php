@@ -74,4 +74,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('invoice/search', [App\Http\Controllers\InvoiceController::class,'search']);
     Route::get('invoice/export/{purchase}',[App\Http\Controllers\InvoiceController::class,'export']);
     Route::get('invoice/download/{purchase}',[App\Http\Controllers\InvoiceController::class,'download']);
+    Route::get('report/get_storage', [App\Http\Controllers\ReportController::class,'get_storage']);
+    Route::get('report', [App\Http\Controllers\ReportController::class,'index']);
 });

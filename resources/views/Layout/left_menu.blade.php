@@ -130,7 +130,7 @@
 		</li>
         @php
         $menu_open = false;
-        if (str_contains(Request::url(),'report_product') ||
+        if (str_contains(Request::url(),'report') ||
 			str_contains(Request::url(),'report_purchase') ||
 		    str_contains(Request::url(),'report_invoice'))
             {$menu_open = true;}
@@ -142,18 +142,18 @@
 			<ul class="treeview-menu" @if($menu_open==true)
 				style="display: block;" @endif>
 
-				<li @if(str_contains(Request::url(),'report_product'))
+				<li @if(str_contains(Request::url(),'report'))
 					class="active" @endif><a
-					href="{{ url('report_product') }}"><i
+					href="{{ url('report') }}"><i
 						class="icon_table"></i>Products</a></li>
-				<li @if(str_contains(Request::url(),'report_purchase'))
+				<!-- <li @if(str_contains(Request::url(),'report_purchase'))
 					class="active" @endif><a
 					href="{{ url('report_purchase') }}"><i
 						class="icon_table"></i>Purchase</a></li>
 				<li @if(str_contains(Request::url(),'report_invoice'))
 					class="active" @endif><a
 					href="{{ url('report_invoice') }}"><i
-						class="icon_table"></i>Sell</a></li>
+						class="icon_table"></i>Sell</a></li> -->
 			</ul></li>
             
 	</ul>

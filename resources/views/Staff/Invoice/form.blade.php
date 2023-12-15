@@ -41,7 +41,7 @@
 	</div>
 </div>
 <!--End of Item Form Template//-->
-
+{!! Html::ul($errors->all()) !!}
 <!--Form to save data-->
 {{ Form::model($invoice, array('url' => 'invoice/'.$invoice->id, 'method' => 'patch', 'class' => 'form-horizontal')) }}
 <!--Item Form-->
@@ -207,6 +207,7 @@
 		</div>
 	</div>
 </div>
+{!! Html::ul($errors->all()) !!}
 <!--End of Item Form Template//-->
 {{ Form::open(array('url'=>'invoice', 'class' => 'form-horizontal')) }}
 <h4 class="card-title mb-0">Items</h4>

@@ -41,7 +41,7 @@
 	</div>
 </div>
 <!--End of Item Form Template//-->
-
+{!! Html::ul($errors->all()) !!}
 <!--Form to save data-->
 {{ Form::model($manufacture, array('url' => 'manufacture/'.$manufacture->id, 'method' => 'patch', 'class' => 'form-horizontal')) }}
 <!--Item Form-->
@@ -177,6 +177,7 @@
 		</div>
 	</div>
 </div>
+{!! Html::ul($errors->all()) !!}
 <!--End of Item Form Template//-->
 {{ Form::open(array('url'=>'manufacture', 'class' => 'form-horizontal')) }}
 <h4 class="card-title mb-0">Items</h4>
