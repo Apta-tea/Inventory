@@ -17,8 +17,7 @@ class ReportController extends Controller
     {
         $data =  \DB::table('products')->join('stock','stock.product_id','=','products.id')
         ->join('categories','categories.id','=','products.category_id')
-        ->join('sub_categories','sub_categories.id','=','products.sub_category_id')
-        ->select('stock.product_id','stock.stock','categories.name','products.product_name','products.buying_price','products.selling_price','products.brand','products.qty')->get(); 
+        ->select('stock.product_id','stock.stock','categories.name','products.product_name','products.buying_price','products.selling_price','products.brand','products.qty','products.description')->get(); 
         return DataTables::of($data)->make(true);
     }
 }

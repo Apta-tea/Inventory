@@ -19,6 +19,7 @@
                         <th>Selling Price</th>
                         <th>Brand</th>
                         <th>Stock</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
             </table>
@@ -39,7 +40,8 @@
                         { data: 'buying_price', name: 'buying_price' },
                         { data: 'selling_price', name: 'selling_price'},
                         { data: 'brand', name: 'brand' },
-                        { data: 'stock', name: 'stock' }
+                        { data: 'stock', name: 'stock' },
+                        { data: 'description', name: 'description' }
                     ]
                 });
             });

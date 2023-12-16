@@ -1,7 +1,7 @@
 <link rel="stylesheet"
 	href="{{ asset('assets/css/custom.css') }}">    
 <table class="table" align="center" width="100%"> 
-@if (!empty($company && $manufacture && $supplier))   
+@if (!empty($company && $material && $manufacturer))   
     <tr>
         <td width="30%">
     		 @if (!empty($company->file_company_logo) && File::exists(public_path().'/assets/'.$company->file_company_logo)) 
@@ -48,23 +48,23 @@
 ****************************************************-->
 
 <div class="panel-heading">
-   <h3 class="manufacture"><strong>Transmittal</strong></h3>
-   <b>Production No: {{ $manufacture->production_no }}</b>
+   <h3 class="material"><strong>Transmittal</strong></h3>
+   <b>Declaration No: {{ $material->issued_no }}</b>
  </div>
 <br>
-Submitted By 
+Receive By 
 <hr> 
 <table  cellspacing="3" cellpadding="3" class="table" align="left">
-      <tr><td>{{ $supplier->company_name }}</td></tr>  
-      <tr><td>{{ $supplier->address }}
+      <tr><td>{{ $manufacturer->company_name }}</td></tr>  
+      <tr><td>{{ $manufacturer->address }}
            <br>
-          {{ $supplier->zip }},{{ $supplier->city }},{{ $supplier->state }}</td></tr>
+          {{ $manufacturer->zip }},{{ $manufacturer->city }},{{ $manufacturer->state }}</td></tr>
 </table>        
      
 <br>                     
 ITEMS  
 <hr>                 
-<!--Data display of manufacture-->
+<!--Data display of material-->
 <table class="table" align="center" width="100%">    
     <tr>
         <th>Product</th>
@@ -74,7 +74,7 @@ ITEMS
     </tr>
        <tr>
                 @php
-				$item = App\Models\Production::where('stored_id',$manufacture->id)->get();
+				$item = App\Models\Item_material::where('issued_id',$material->id)->get();
 				@endphp
 				@foreach ($item as $i) 
                    <tr>
@@ -90,7 +90,7 @@ ITEMS
                 @endforeach
     </tr>
 </table>		
-<!--End of Data display of manufacture//-->
+<!--End of Data display of material//-->
 
 <br><br>
 GENERAL INFO
@@ -98,13 +98,13 @@ GENERAL INFO
 <table  cellspacing="3" cellpadding="3" class="table" align="center">
     <tr><td>Operator</td><td>
     @php
-    $p = App\Models\User::where('id',$manufacture->user_id)->first();
+    $p = App\Models\User::where('id',$material->user_id)->first();
     echo $p->email;
     @endphp
     </td></tr>
-    <tr><td>Stored Date</td><td>{{ $manufacture->stored_date }}</td></tr>
-    <tr><td>Description</td><td>{{ $manufacture->description }}</td></tr>
-    <tr><td>Amount</td><td>{{ number_format($manufacture->amount) }}</td></tr>		
+    <tr><td>Issued Date</td><td>{{ $material->issued_date }}</td></tr>
+    <tr><td>Description</td><td>{{ $material->description }}</td></tr>
+    <tr><td>Amount</td><td>{{ number_format($material->amount) }}</td></tr>		
 </table>
 @else
 <!--No data-->

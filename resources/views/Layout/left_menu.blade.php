@@ -109,7 +109,7 @@
 			</ul></li> 
         @php
         $menu_open = false;
-        if (str_contains(Request::url(),'invoice') || str_contains(Request::url(),'item_invoice')) 
+        if (str_contains(Request::url(),'invoice') || str_contains(Request::url(),'material')) 
             {$menu_open = true;}
 		@endphp
         <li
@@ -122,10 +122,10 @@
 					class="active" @endif><a
 					href="{{ url('invoice') }}"><i
 						class="icon_table"></i>Invoice</a></li>
-				<!-- <li @if(str_contains(Request::url(),'item_invoice'))
+				 <li @if(str_contains(Request::url(),'material'))
 					class="active" @endif><a
-					href="{{ url('item_invoice') }}"><i
-						class="icon_table"></i>Item Invoice</a></li> -->
+					href="{{ url('material') }}"><i
+						class="icon_table"></i>Raw Material</a></li> 
 			</ul>
 		</li>
         @php
