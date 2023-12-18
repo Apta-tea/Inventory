@@ -82,4 +82,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('material/search', [App\Http\Controllers\RawController::class,'search']);
     Route::get('material/download/{material}',[App\Http\Controllers\RawController::class,'download']);
     Route::get('material/export/{material}',[App\Http\Controllers\RawController::class,'export']);
+
 });

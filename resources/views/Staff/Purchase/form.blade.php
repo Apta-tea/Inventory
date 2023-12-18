@@ -270,7 +270,7 @@
 	<div class="form-group">
 			<label for="Purchase Number" class="col-md-4 control-label">Purchase Number</label>
 			<div class="col-md-8">
-			{{ Form::text('purchase_no','',['class'=>'form-control','id'=>'purchase_no']) }}
+			{{ Form::text('purchase_no','PRC-'.uniqid(),['class'=>'form-control','id'=>'purchase_no']) }}
 			</div>
 		</div>
 		<div class="form-group">

@@ -227,7 +227,7 @@
 	<div class="form-group">
 			<label for="Issued Number" class="col-md-4 control-label">Issued Number</label>
 			<div class="col-md-8">
-			{{ Form::text('issued_no','',['class'=>'form-control','id'=>'issued_no']) }}
+			{{ Form::text('issued_no','MT-'.uniqid(),['class'=>'form-control','id'=>'issued_no']) }}
 			</div>
 		</div>
 		<div class="form-group">

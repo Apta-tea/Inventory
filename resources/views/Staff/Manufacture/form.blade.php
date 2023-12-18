@@ -228,7 +228,7 @@
 	<div class="form-group">
 			<label for="Production Number" class="col-md-4 control-label">Production Number</label>
 			<div class="col-md-8">
-			{{ Form::text('production_no','',['class'=>'form-control','id'=>'production_no']) }}
+			{{ Form::text('production_no','PRD-'.uniqid(),['class'=>'form-control','id'=>'production_no']) }}
 			</div>
 		</div>
 		<div class="form-group">

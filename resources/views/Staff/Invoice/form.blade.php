@@ -282,7 +282,7 @@
 	<div class="form-group">
 			<label for="invoice Number" class="col-md-4 control-label">invoice Number</label>
 			<div class="col-md-8">
-			{{ Form::text('invoice_no','',['class'=>'form-control','id'=>'invoice_no']) }}
+			{{ Form::text('invoice_no','IN-'.uniqid(),['class'=>'form-control','id'=>'invoice_no']) }}
 			</div>
 		</div>
 		<div class="form-group">

@@ -28,7 +28,7 @@
     href="{{ asset('assets/css/custom.css') }}" >
 <link rel="stylesheet"
     href="{{ asset('assets/datepicker/jquery-ui.css') }}" >
-<script src="{{ asset('/assets/datepicker/jquery-1.10.2.js') }}" ></script>
+<script src="{{ asset('/assets/datepicker/jquery-3.7.0.js') }}" ></script>
 <script src="{{ asset('/assets/datepicker/jquery-ui.js') }}" ></script>
 
 </head>

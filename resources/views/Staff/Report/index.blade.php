@@ -1,4 +1,13 @@
 <br>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
 <link rel="stylesheet" href="{{ asset('assets/riktheme/jquery.dataTables.min.css') }}">
 <script src="{{ asset('/assets/riktheme/jquery.dataTables.min.js') }}" defer></script>        
         <br>
@@ -27,9 +36,11 @@
         <!-- DataTables -->
         <script type="text/javascript">
              $(document).ready(function () {
-                $('#users-table').DataTable({
+             var table = $('#users-table').DataTable({
                     processing: true,
                     serverSide: true,
+                    dom: '<"html5buttons">Blfrtip',
+                    buttons: [ 'excel', 'pdf', 'colvis' ],
                     ajax: '{{ url('report/get_storage') }}',
                     columns: [
                         { data: 'no', name:'id', render: function (data, type, row, meta) {
@@ -44,5 +55,7 @@
                         { data: 'description', name: 'description' }
                     ]
                 });
-            });
+            });            
         </script>
+
+        
