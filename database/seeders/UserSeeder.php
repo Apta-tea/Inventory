@@ -26,6 +26,12 @@ class UserSeeder extends Seeder
                'user_type'=>'super',
                'status'=>'active',
             ],
+            [
+                'email'=>'bobo@hai.com',
+                'password' => Hash::make('123456'),
+                'user_type'=>'staff',
+                'status'=>'active',
+             ],
         ];
 
         foreach ($user as $key => $value) {
