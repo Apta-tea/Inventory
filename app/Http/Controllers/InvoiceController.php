@@ -14,6 +14,7 @@ use App\Models\Item_invoice;
 use App\Models\Company;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\InvoiceExport;
+use App\Models\Product;
 
 class InvoiceController extends Controller
 {
