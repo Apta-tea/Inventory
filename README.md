@@ -13,6 +13,7 @@ https://youtu.be/pIDtSp04YM4
 - composer update
 - php artisan key:generate
 - thats all folks
+- buy me a cup of coffee? https://teer.id/apta-tea
 
 ## License
 Creative Commons Attribution 4.0 cc-by-4.0
