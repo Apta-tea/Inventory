@@ -12,7 +12,7 @@ https://youtu.be/pIDtSp04YM4
 -   composer update
 -   php artisan key:generate
 -   thats all folks
--   buy me a cup of coffee? [&#9749;](https://teer.id/apta-tea)
+-   buy me a cup of coffee? [&#9749;](https://teer.id/enpisi7)
 -   any bug, just info me on repo issues
 
 ## License
